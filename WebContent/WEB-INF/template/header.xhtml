@@ -1,0 +1,20 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	   <h:form id="connectionForm">
+   <span id="titre"><h:outputLink value = "/quizschool/" >Quiz School Academy</h:outputLink></span>
+   <p:outputPanel rendered="#{controlLoginStagiaire.stagiaire == null}">
+   					<p:inputText value="#{controlLoginStagiaire.login}"/>
+   					<p:password  value="#{controlLoginStagiaire.password}" />
+					<p:commandButton value="Connexion" actionListener="#{controlLoginStagiaire.connection}" update="connectionForm"/>
+	</p:outputPanel>
+	<p:outputPanel rendered="#{controlLoginStagiaire.stagiaire != null}">
+	Bienvenue, #{controlLoginStagiaire.login} !
+	<p:commandButton value="Déconnexion" actionListener="#{controlLoginStagiaire.deconnection}" update="connectionForm"/>
+	</p:outputPanel>
+</h:form>
+						<hr/>
+</ui:composition>	

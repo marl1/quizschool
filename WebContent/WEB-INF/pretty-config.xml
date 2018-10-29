@@ -1,0 +1,43 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+<url-mapping id="view-index">
+	<pattern value="/" />
+	<view-id value="index.xhtml" />
+</url-mapping>
+
+<url-mapping id="view-quiz">
+   <pattern value="/quiz/#{ iid : controlQuiz.paramQuiz }" />
+   <view-id value="/quiz.xhtml" />
+</url-mapping>
+
+<url-mapping id="view-quiz">
+	<pattern value="/accueil" />
+   <view-id value="accueilstagiaire.xhtml" />
+</url-mapping>
+
+<url-mapping id="view-admin">
+	<pattern value="/admin" />
+   <view-id value="/admin/admin.xhtml" />
+</url-mapping>
+
+<url-mapping id="view-admin-themes">
+	<pattern value="/admin/themes" />
+   <view-id value="/admin/themes.xhtml" />
+   <action>#{controlTheme.setTheme(null)}</action>
+</url-mapping>
+
+<url-mapping id="view-admin-theme">
+	<pattern value="/admin/theme/#{ iid : controlTheme.paramTheme }" />
+   <view-id value="/admin/themes.xhtml" />
+</url-mapping>
+
+<url-mapping id="view-admin-module">
+	<pattern value="/admin/module/#{ iid : controlModule.paramModule }" />
+   <view-id value="/admin/modules.xhtml" />
+</url-mapping>
+
+
+</pretty-config>

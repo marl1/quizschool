@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view>
+	<h:head>
+		<f:facet name="first">
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title>Quiz School Academy</title>
+		</f:facet>
+	</h:head>
+
+	<h:body>
+	<ui:include src = "../WEB-INF/template/headeradmin.xhtml" />
+
+		<p:panel id="panelGlobal">
+			<p:outputPanel rendered="#{controlLoginAdmin.admin == null}">
+				Connexion requise.
+			</p:outputPanel>
+			
+			<p:outputPanel rendered="#{controlLoginAdmin.admin != null}">
+				Outils administrateur :
+				<p>-<a href="admin/themes">Gestion des thèmes</a></p>
+			</p:outputPanel>
+		</p:panel>
+	</h:body>
+</f:view>
+</html>

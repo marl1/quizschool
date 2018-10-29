@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view>
+	<h:head>
+		<f:facet name="first">
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			<title>Quiz School Academy</title>
+		</f:facet>
+	</h:head>
+
+	<h:body>
+		<ui:include src="../WEB-INF/template/headeradmin.xhtml" />
+
+		<p:panel id="panelGlobal">
+			<p:outputPanel rendered="#{controlLoginAdmin.admin == null}">
+				Connexion requise.
+			</p:outputPanel>
+
+			<p:outputPanel id="panelTheme" rendered="#{controlLoginAdmin.admin != null and controlTheme.theme == null}">
+			Liste des thèmes :
+			<h:form>
+   <p:dataTable id="themeTable" var="theme" value="#{controlTheme.themeDao.getAllThemes()}" editable="true" style="margin-bottom:20px">
+ 
+       <p:ajax event="rowEdit" listener="#{controlTheme.onRowEdit}" update="@all" />
+       <p:ajax event="rowEditCancel" listener="#{controlTheme.onRowCancel}" update="@all" />
+ 
+       <p:column headerText="Nom du thème">
+           <p:cellEditor>
+               <f:facet name="output"><a href="theme/#{theme.idTheme}">#{theme.nomTheme}</a></f:facet>
+               <f:facet name="input"><p:inputText  id="nomThemeInput" value="#{theme.nomTheme}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+ 
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+ 
+       <p:column style="width:32px">
+                    <p:commandButton icon="ui-icon-trash"
+                        title="Supprimer ce thème"
+                        actionListener="#{controlTheme.remove(theme)}" update="@all" />
+       </p:column>
+   </p:dataTable>
+
+            <p:commandButton value="Add new row" process="@this" update="@all"
+                          actionListener="#{controlTheme.onAddNew()}" oncomplete="PF('panelTheme').addRow();"/>
+   </h:form>
+
+			</p:outputPanel>
+			
+	<p:outputPanel id="panelModulesTheme" rendered="#{controlLoginAdmin.admin != null and controlTheme.theme != null}">
+	<a href="../themes">Retourner à la liste des thèmes</a><br/><br/>
+			Modules du thème #{controlTheme.theme.getNomTheme()} :
+			<h:form>
+   <p:dataTable id="themeModulesTable" var="module" value="#{controlTheme.theme.getModules()}" editable="true" style="margin-bottom:20px">
+ 
+       <p:ajax event="rowEdit" listener="#{controlTheme.onRowEditModule}" update="@all" />
+ 
+       <p:column headerText="Nom du module">
+           <p:cellEditor>
+               <f:facet name="output"><a href="../module/#{module.idModule}">#{module.nomModule}</a></f:facet>
+               <f:facet name="input"><p:inputText  id="nomThemeInput" value="#{module.nomModule}" style="width:100%"/></f:facet>
+           </p:cellEditor>
+       </p:column>
+ 
+       <p:column style="width:32px">
+           <p:rowEditor />
+       </p:column>
+ 
+       <p:column style="width:32px">
+                    <p:commandButton icon="ui-icon-trash"
+                        title="Supprimer ce module"
+                        actionListener="#{controlTheme.removeModule(module)}" update="@all" />
+       </p:column>
+   </p:dataTable>
+
+            <p:commandButton value="Add new row" process="@this" update="@all"
+                          actionListener="#{controlTheme.onAddNewModule()}" oncomplete="PF('panelModulesTheme').addRow();"/>
+   </h:form>
+
+			</p:outputPanel>
+		</p:panel>
+	</h:body>
+</f:view>
+</html>

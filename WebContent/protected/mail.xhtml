@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view>
+	<h:head>
+		<f:facet name="first">
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+			
+			<title>PrimeFaces</title>
+		</f:facet>
+	</h:head>
+
+	<h:body>
+
+	<ui:include src = "../WEB-INF/template/header.xhtml" />
+
+			<p:panel id="panelDemarrage">
+			<h1>Inscription :</h1>
+				Entrez votre mail pour vous inscrire à l'école :
+				<h:form>
+					<p:inputText value="#{controlMail.mail}"/>
+					<p:commandButton value="Inscription"
+						actionListener="#{controlMail.envoyerMail}"/>
+				</h:form>
+			</p:panel>
+
+
+
+
+	</h:body>
+</f:view>
+</html>
